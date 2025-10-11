@@ -25,13 +25,13 @@ const AnimatedHero = () => {
                   className={`inline-block animate-letter-drop ${className}`}
                   style={{
                       animationDelay: `${initialDelay + index * LETTER_STAGGER_MS}s`, 
-                      opacity: 0, // Start invisible
+                      opacity: 0, // Start invisibled
                   }}
-              >
+              > 
                   {content}
 
 
-                  
+
               </span>
           );
       });
