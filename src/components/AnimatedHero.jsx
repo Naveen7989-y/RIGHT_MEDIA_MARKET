@@ -13,28 +13,45 @@ const AnimatedHero = () => {
 
   // Helper function to split text and apply staggered animation
   const renderStaggeredText = (text, initialDelay, isPrimary = false) => {
-      const className = isPrimary ? "text-primary-200" : "";
-      
-      return text.split('').map((char, index) => {
-          // Use non-breaking space for proper rendering of spaces
-          const content = char === ' ' ? '\u00A0' : char;
+    const fragments = [];
+    let currentDelay = initialDelay;
+    const letterClass = isPrimary ? "text-primary-200" : "";
 
-          return (
-              <span
-                  key={index}
-                  className={`inline-block animate-letter-drop ${className}`}
-                  style={{
-                      animationDelay: `${initialDelay + index * LETTER_STAGGER_MS}s`, 
-                      opacity: 0, // Start invisibled
-                  }}
-              > 
-                  {content}
-
-
-
-              </span>
-          );
+    text.split(' ').forEach((word, wordIndex, wordsArray) => {
+      const letters = word.split('').map((char, charIndex) => {
+        const delayForLetter = currentDelay;
+        currentDelay += LETTER_STAGGER_MS;
+        return (
+          <span
+            key={`letter-${wordIndex}-${charIndex}`}
+            className={`inline-block animate-letter-drop ${letterClass}`}
+            style={{
+              animationDelay: `${delayForLetter}s`,
+              opacity: 0, // Start invisible before animation
+            }}
+          >
+            {char}
+          </span>
+        );
       });
+
+      fragments.push(
+        <span key={`word-${wordIndex}`} className="inline-flex">
+          {letters}
+        </span>
+      );
+
+      if (wordIndex < wordsArray.length - 1) {
+        fragments.push(
+          <React.Fragment key={`space-${wordIndex}`}>
+            {' '}
+          </React.Fragment>
+        );
+        currentDelay += LETTER_STAGGER_MS;
+      }
+    });
+
+    return fragments;
   };
 
   return (

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { FaBars, FaTimes } from 'react-icons/fa';
-import Logo from '../images/RMMLogo.png';
+import Logo from '../images/RMMFevicon.png';
 import './TextEffect.css';
 
 const Navbar = () => {
@@ -38,21 +38,16 @@ const Navbar = () => {
       <div className="container-custom">
         <div className="flex justify-between items-center">
           {/* Logo */}
-          <Link to="/" className="flex items-center space-x-3 group">
-            <div className="relative w-12 h-12 md:w-14 md:h-14">
-              <img
-                id="logo-img"
-                src={Logo}
-                alt="Right Media Marketing"
-                className="w-full h-full object-contain mix-blend-screen drop-shadow-md group-hover:scale-105 transition-transform duration-500"
-              />
-            </div>
-            <span className={`text-lg md:text-xl font-semibold tracking-wide transition-colors duration-500 ${
-              isScrolled ? 'text-neutral-800' : 'text-white'
-            }`}>
-              Right Media Marketing
-            </span>
-          </Link>
+        <Link to="/" className="flex items-center space-x-3 group bg-transparent"> 
+    <div className="relative w-12 h-12 md:w-14 md:h-14 bg-transparent">
+        <img
+            id="logo-img"
+            src={Logo}
+            alt="Right Media Marketing"
+            className="w-full h-full object-contain drop-shadow-sm group-hover:scale-105 transition-transform duration-500"
+        />
+    </div>
+</Link>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">

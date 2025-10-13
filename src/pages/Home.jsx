@@ -296,11 +296,11 @@ const Home = () => {
       <section className="section-padding gradient-bg text-white relative overflow-hidden">
         <div className="absolute inset-0 bg-black opacity-10"></div>
         <div className="container-custom relative z-10">
-          <div className="max-w-4xl mx-auto text-center">
-            <h2 className="heading-lg mb-6">
+          <div className="max-w-4xl mx-auto text-center bg-gradient-to-br from-primary-100 via-accent-100 to-darkPastel-400/40 text-neutral-800 rounded-3xl shadow-xl border border-white/30 p-10 md:p-14 backdrop-blur-sm">
+            <h2 className="heading-lg mb-6 text-heading-600">
               Ready to Transform Your Digital Presence?
             </h2>
-            <p className="text-xl mb-8 text-gray-100 leading-relaxed">
+            <p className="text-xl mb-8 text-neutral-700 leading-relaxed">
               Let's discuss how Right Media Marketing can help you achieve your business goals. Whether you need a new website, a comprehensive marketing strategy, or a custom SaaS solution, we're here to make it happen.
             </p>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10 text-left">
