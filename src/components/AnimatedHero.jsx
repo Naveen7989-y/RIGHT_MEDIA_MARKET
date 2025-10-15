@@ -110,7 +110,7 @@ const AnimatedHero = () => {
           }
 
           .gradient-bg {
-            background: linear-gradient(-45deg, #0f172a, #1E3A8A, #0f172a, #3730a3);
+            background: linear-gradient(-45deg, #0046FF, #73C8D2, #0046FF, #FF9013);
             background-size: 400% 400%;
             animation: animatedGradient 18s ease infinite;
           }
@@ -118,8 +118,8 @@ const AnimatedHero = () => {
           /* Custom utility classes */
           .heading-xl { font-size: 3.5rem; line-height: 1.1; font-weight: 800; }
           .container-custom { max-width: 1280px; margin-left: auto; margin-right: auto; padding-left: 1rem; padding-right: 1rem; }
-          .text-primary-200 { color: #bfdbfe; }
-          .text-primary-600 { color: #2563eb; }
+          .text-primary-200 { color: #AED1FF; }
+          .text-primary-600 { color: #0046FF; }
           .btn-primary { 
             display: inline-flex; justify-content: center; align-items: center; padding: 0.75rem 1.75rem; border-radius: 0.5rem; font-weight: 600; 
             transition: all 0.3s;
@@ -153,7 +153,7 @@ const AnimatedHero = () => {
             </h1>
             
             {/* Sub-Headline - Staggered Slide Up 1 */}
-            <p className="text-xl md:text-2xl mb-8 text-gray-100 leading-relaxed opacity-0 animate-slide-up-1 max-w-4xl mx-auto">
+            <p className="text-xl md:text-2xl mb-8 text-black leading-relaxed opacity-0 animate-slide-up-1 max-w-4xl mx-auto">
               Partner with experts who blend cutting-edge technology with data-driven marketing strategies to deliver measurable results for your business.
             </p>
             
@@ -165,7 +165,7 @@ const AnimatedHero = () => {
             {/* Buttons - Staggered Slide Up 3 */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center opacity-0 animate-slide-up-3">
               {/* Primary CTA - Subtle Pulse Animation */}
-              <a href="#" className="btn-primary bg-white text-primary-600 hover:bg-gray-100 animate-pulse-subtle">
+              <a href="#" className="btn-primary bg-white text-primary-600 hover:bg-accent-400 hover:text-white animate-pulse-subtle">
                 Get Your Free Strategy Session
               </a>
               {/* Secondary CTA */}

@@ -24,9 +24,18 @@
 }
 
 .banner-content {
-  color: #c4baff;
+  color: #F5F1DC;
   text-align: center;
-  text-shadow: 0 2px 10px #000, 0 0 15px #a18fff;
+  text-shadow: 0 2px 12px rgba(0, 70, 255, 0.2), 0 0 18px rgba(115, 200, 210, 0.35);
+  background: rgba(0, 70, 255, 0.12);
+  border-radius: 24px;
+  padding: 36px 48px;
+  border: 1.5px solid rgba(115, 200, 210, 0.4);
+  backdrop-filter: blur(12px) saturate(180%);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+  box-shadow: 0 4px 32px 8px rgba(0, 36, 102, 0.12);
+  display: inline-block;
+  margin: 0 auto;
 }
 
 .banner-content h1 {
@@ -39,27 +48,18 @@
 .banner-content .subtitle {
   margin-top: 20px;
   font-size: 1.2rem;
-  color: #fff;
+  color: #73C8D2;
   opacity: 0.95;
-}
-.banner-content {
-  color: #c4baff;
-  text-align: center;
-  text-shadow: 0 2px 10px #000, 0 0 15px #a18fff;
-  /* Glass effect styles: */
-  background: rgba(44, 44, 68, 0.35); /* semi-transparent bg */
-  border-radius: 24px;
-  padding: 36px 48px;
-  border: 1.5px solid rgba(255, 255, 255, 0.25);
-  backdrop-filter: blur(12px) saturate(180%);
-  -webkit-backdrop-filter: blur(12px) saturate(180%);
-  box-shadow: 0 4px 32px 8px rgba(30,30,60,0.1);
-  display: inline-block;
-  margin: 0 auto;
+  
 }
 #logo-img {
+  
+  border-radius:40px;
   width: 160px;
   height: 90px;
   object-fit: contain;
   filter: brightness(1.1) saturate(1.05);
+  transition: all 0.3s ease-in-out;
+  
+  
 }

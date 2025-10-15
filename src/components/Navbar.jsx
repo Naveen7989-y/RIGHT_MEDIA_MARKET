@@ -31,7 +31,7 @@ const Navbar = () => {
     <nav
       className={`fixed w-full z-50 transition-all duration-500 ${
         isScrolled
-          ? 'bg-white/70 backdrop-blur-lg shadow-xl py-3'
+          ? 'bg-surface/95 backdrop-blur-lg shadow-xl py-3 border-b border-border/40'
           : 'bg-transparent py-6'
       }`}
     >
@@ -39,7 +39,7 @@ const Navbar = () => {
         <div className="flex justify-between items-center">
           {/* Logo */}
         <Link to="/" className="flex items-center space-x-3 group bg-transparent"> 
-    <div className="relative w-12 h-12 md:w-14 md:h-14 bg-transparent">
+    <div className="relative w-12 h-12 md:w-14 md:h-14 bg-transparent ">
         <img
             id="logo-img"
             src={Logo}
@@ -58,10 +58,10 @@ const Navbar = () => {
                 className={`font-medium tracking-wide transition-all duration-500 ${
                   location.pathname === link.path
                     ? isScrolled
-                      ? 'text-primary-600'
+                      ? 'text-primary-500'
                       : 'text-white'
                     : isScrolled
-                    ? 'text-neutral-600 hover:text-primary-500'
+                    ? 'text-neutral-600 hover:text-primary-400'
                     : 'text-white/80 hover:text-white'
                 }`}
               >
@@ -80,7 +80,7 @@ const Navbar = () => {
           <button
             onClick={() => setIsOpen(!isOpen)}
             className={`md:hidden text-2xl transition-colors duration-500 ${
-              isScrolled ? 'text-neutral-800' : 'text-white'
+              isScrolled ? 'text-primary-500' : 'text-white'
             }`}
           >
             {isOpen ? <FaTimes /> : <FaBars />}
@@ -98,7 +98,7 @@ const Navbar = () => {
                   className={`font-medium transition-colors duration-300 ${
                     location.pathname === link.path
                       ? 'text-primary-600'
-                      : 'text-gray-700 hover:text-primary-600'
+                      : 'text-neutral-700 hover:text-primary-500'
                   }`}
                 >
                   {link.name}

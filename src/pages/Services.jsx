@@ -372,7 +372,7 @@ const Services = () => {
             <h1 className="heading-xl mb-6">
               Our <span className="text-primary-200">Services</span>
             </h1>
-            <p className="text-xl md:text-2xl mb-8 text-gray-100 leading-relaxed">
+            <p className="text-xl md:text-2xl mb-8 text-black leading-relaxed">
               Comprehensive digital solutions designed to accelerate your business growth and maximize your online presence.
             </p>
           </div>
@@ -546,7 +546,7 @@ const Services = () => {
             <h2 className="heading-lg mb-6">
               Ready to Get Started?
             </h2>
-            <p className="text-xl mb-8 text-gray-100 leading-relaxed">
+            <p className="text-xl mb-8 text-black leading-relaxed">
               Let's discuss your project and create a customized solution that drives real results for your business.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">

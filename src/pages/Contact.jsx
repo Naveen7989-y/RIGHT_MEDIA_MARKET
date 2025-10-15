@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import emailjs from "emailjs-com";
 import { 
   FaEnvelope, 
   FaPhone, 
@@ -11,6 +12,7 @@ import {
   FaCheckCircle
 } from 'react-icons/fa';
 
+
 const Contact = () => {
   const [formData, setFormData] = useState({
     name: '',
@@ -21,7 +23,9 @@ const Contact = () => {
     message: ''
   });
 
-  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleChange = (e) => {
     setFormData({
@@ -30,24 +34,49 @@ const Contact = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Here you would typically send the form data to your backend
-    console.log('Form submitted:', formData);
-    setIsSubmitted(true);
-    
-    // Reset form after 3 seconds
-    setTimeout(() => {
-      setIsSubmitted(false);
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        company: '',
-        service: '',
-        message: ''
-      });
-    }, 3000);
+
+    if (isSubmitting) {
+      return;
+    }
+
+    setIsSubmitting(true);
+    setErrorMessage('');
+
+    try {
+      const result = await emailjs.send(
+        'service_qoogo5b',
+        'template_p8rk4c4',
+        formData,
+        'daSSWa0_NeDpPjV2T'
+      );
+
+      if (result.status === 200) {
+        setIsSuccess(true);
+        setTimeout(() => {
+          setIsSuccess(false);
+        }, 3000);
+
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          company: '',
+          service: '',
+          message: ''
+        });
+      } else {
+        setErrorMessage('Unable to send message right now. Please try again later.');
+      }
+    } catch (error) {
+      setErrorMessage(
+        error?.text ||
+          'Something went wrong while sending your message. Please check your details and try again.'
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const services = [
@@ -65,21 +94,21 @@ const Contact = () => {
       title: 'Email Us',
       content: 'contact@rightmediamarketing.com',
       link: 'mailto:contact@rightmediamarketing.com',
-      color: 'from-blue-500 to-cyan-500'
+      color: 'from-primary-500 to-accent-400'
     },
     {
       icon: <FaPhone className="text-2xl" />,
       title: 'Call Us',
       content: '+1 (234) 567-890',
       link: 'tel:+1234567890',
-      color: 'from-green-500 to-teal-500'
+      color: 'from-heading-500 to-primary-500'
     },
     {
       icon: <FaMapMarkerAlt className="text-2xl" />,
       title: 'Visit Us',
       content: 'Your Location, City, Country',
       link: '#',
-      color: 'from-purple-500 to-pink-500'
+      color: 'from-accent-500 to-primary-500'
     }
   ];
 
@@ -102,7 +131,7 @@ const Contact = () => {
             <h1 className="heading-xl mb-6">
               Let's Build Something <span className="text-primary-200">Amazing Together</span>
             </h1>
-            <p className="text-xl md:text-2xl mb-8 text-gray-100 leading-relaxed">
+            <p className="text-xl md:text-2xl mb-8 text-black leading-relaxed">
               Ready to transform your digital presence? Get in touch with our team of experts and let's discuss how we can help you achieve your goals.
             </p>
           </div>

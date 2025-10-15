@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import { 
@@ -13,7 +14,9 @@ import {
   FaGoogle,
   FaFacebook,
   FaInstagram,
-  FaLinkedin
+  FaLinkedin,
+  FaArrowLeft,
+  FaArrowRight
 } from 'react-icons/fa';
 import { SiNextdotjs, SiTailwindcss, SiMongodb, SiPostgresql } from 'react-icons/si';
 import AnimatedHero from '../components/AnimatedHero';
@@ -21,6 +24,8 @@ import AutoScrollCarousel from '../components/AutoScrollCarousel';
 
 
 const Home = () => {
+  const [carouselDirection, setCarouselDirection] = useState('left');
+
   const services = [
     {
       icon: <FaCode className="text-4xl" />,
@@ -136,11 +141,11 @@ const Home = () => {
             {valueProps.map((prop, index) => (
               <div 
                 key={index} 
-                className="p-8 rounded-xl bg-gradient-to-br from-gray-50 to-white border border-gray-100 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+                className="p-8 rounded-xl bg-gradient-to-br from-surface via-surfaceGlass/40 to-white border border-border/40 hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
               >
-                <div className="text-primary-600 mb-4">{prop.icon}</div>
+                <div className="text-primary-500 mb-4">{prop.icon}</div>
                 <h3 className="heading-sm mb-3">{prop.title}</h3>
-                <p className="text-gray-600 leading-relaxed">{prop.description}</p>
+                <p className="text-neutral-600 leading-relaxed">{prop.description}</p>
               </div>
             ))}
           </div>
@@ -148,45 +153,66 @@ const Home = () => {
       </section>
 
       {/* Services Section */}
-      <section className="section-padding bg-gray-50">
+      <section className="section-padding bg-surface">
         <div className="container-custom">
           <div className="text-center mb-16">
             <h2 className="heading-lg mb-4">
               Comprehensive Solutions for <span className="gradient-text">Digital Success</span>
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            <p className="text-xl text-neutral-600 max-w-3xl mx-auto">
               We combine technical excellence with marketing mastery to deliver end-to-end solutions that drive business growth.
             </p>
           </div>
-          <AutoScrollCarousel
-            items={services}
-            gap="gap-8"
-            className="pb-6 md:pb-8"
-            renderItem={(service) => (
-              <div className="card p-8 w-80 md:w-96 mx-2 group">
-                <div className={`w-16 h-16 rounded-lg bg-gradient-to-br ${service.color} flex items-center justify-center text-white mb-6 group-hover:scale-110 transition-transform duration-300`}>
-                  {service.icon}
+          <div className="relative">
+            <button
+              type="button"
+              aria-label="Previous"
+              className="hidden md:flex absolute left-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white/90 backdrop-blur-sm shadow-lg border border-border items-center justify-center text-primary-500 hover:bg-white hover:text-primary-400 transition-colors"
+              onClick={() => setCarouselDirection('left')}
+            >
+              <FaArrowLeft />
+            </button>
+            <button
+              type="button"
+              aria-label="Next"
+              className="hidden md:flex absolute right-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-white/90 backdrop-blur-sm shadow-lg border border-border items-center justify-center text-primary-500 hover:bg-white hover:text-primary-400 transition-colors"
+              onClick={() => setCarouselDirection('right')}
+            >
+              <FaArrowRight />
+            </button>
+            <AutoScrollCarousel
+              items={services}
+              gap="gap-8"
+              className="pb-6 md:pb-8"
+              direction={carouselDirection}
+              renderItem={(service) => (
+                <div className="card p-8 w-80 md:w-96 mx-2 group h-full flex flex-col">
+                  <div className={`w-16 h-16 rounded-lg bg-gradient-to-br ${service.color} flex items-center justify-center text-white mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg shadow-primary-900/20`}>
+                    {service.icon}
+                  </div>
+                  <div className="flex flex-col flex-grow">
+                    <h3 className="heading-sm mb-3">{service.title}</h3>
+                    <p className="text-neutral-600 mb-6 leading-relaxed">{service.description}</p>
+                    <ul className="space-y-2 flex-grow">
+                      {service.features.map((feature, idx) => (
+                        <li key={idx} className="flex items-start">
+                          <FaCheckCircle className="text-accent-400 mt-1 mr-2 flex-shrink-0" />
+                          <span className="text-neutral-700">{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <Link 
+                    to="/services" 
+                    className="mt-6 text-primary-300 hover:text-primary-200 font-semibold inline-flex items-center group"
+                  >
+                    Learn More 
+                    <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
+                  </Link>
                 </div>
-                <h3 className="heading-sm mb-3">{service.title}</h3>
-                <p className="text-gray-600 mb-6 leading-relaxed">{service.description}</p>
-                <ul className="space-y-2 mb-6">
-                  {service.features.map((feature, idx) => (
-                    <li key={idx} className="flex items-start">
-                      <FaCheckCircle className="text-green-500 mt-1 mr-2 flex-shrink-0" />
-                      <span className="text-gray-700">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-                <Link 
-                  to="/services" 
-                  className="text-primary-300 hover:text-primary-200 font-semibold inline-flex items-center group"
-                >
-                  Learn More 
-                  <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
-                </Link>
-              </div>
-            )}
-          />
+              )}
+            />
+          </div>
         </div>
       </section>
 
@@ -314,7 +340,7 @@ const Home = () => {
               ].map((benefit, index) => (
                 <div key={index} className="flex items-start">
                   <FaCheckCircle className="text-green-400 mt-1 mr-3 flex-shrink-0" />
-                  <span className="text-gray-100">{benefit}</span>
+                  <span className="text-black">{benefit}</span>
                 </div>
               ))}
             </div>
