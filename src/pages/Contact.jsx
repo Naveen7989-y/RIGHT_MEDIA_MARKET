@@ -175,7 +175,7 @@ const Contact = () => {
                 Fill out the form below and we'll get back to you within 24 hours.
               </p>
 
-              {isSubmitted ? (
+              {isSuccess ? (
                 <div className="bg-green-50 border border-green-200 rounded-lg p-8 text-center animate-scale-in">
                   <FaCheckCircle className="text-5xl text-green-500 mx-auto mb-4" />
                   <h3 className="text-2xl font-semibold text-green-800 mb-2">
